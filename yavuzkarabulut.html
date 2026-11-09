@@ -1,0 +1,1155 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baba, Bir Hayalim Var.</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --red: #e63946;
+    --black: #080808;
+    --gray: #aaa;
+}
+
+body {
+    background: var(--black);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+/* İLK AÇILIŞ EKRANI */
+
+#opening {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: #050505;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.opening-content {
+    text-align: center;
+    padding: 25px;
+}
+
+.opening-line {
+    width: 45px;
+    height: 2px;
+    background: var(--red);
+    margin: 0 auto 30px;
+}
+
+.opening-content h1 {
+    font-size: clamp(32px, 6vw, 65px);
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.opening-content p {
+    color: #777;
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 45px;
+}
+
+.opening-button {
+    background: transparent;
+    border: 1px solid var(--red);
+    color: white;
+    padding: 20px 38px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.opening-button:hover {
+    background: var(--red);
+    box-shadow: 0 0 35px rgba(230,57,70,.35);
+    transform: scale(1.05);
+}
+
+.opening-footer {
+    position: absolute;
+    bottom: 30px;
+    color: #555;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+#opening.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ANA SİTE */
+
+#mainSite {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease;
+}
+
+#mainSite.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(5,5,5,.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #222;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-size: 17px;
+}
+
+.logo span {
+    color: var(--red);
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #aaa;
+    font-size: 10px;
+    letter-spacing: 1px;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: var(--red);
+}
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 10%;
+    background:
+    linear-gradient(90deg, #050505 5%, rgba(0,0,0,.85) 55%, rgba(0,0,0,.3)),
+    url('images/250sr-ana.jpg') center/cover;
+}
+
+.hero-content {
+    max-width: 750px;
+    animation: enter 1.2s ease;
+}
+
+.label {
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 7vw, 85px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--red);
+}
+
+.hero p {
+    color: #bbb;
+    font-size: 15px;
+    line-height: 2;
+    max-width: 570px;
+}
+
+.button {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    text-decoration: none;
+    border: none;
+    padding: 17px 28px;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.button:hover {
+    background: white;
+    color: black;
+    transform: translateY(-4px);
+}
+
+section {
+    padding: 100px 10%;
+}
+
+.section-title {
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 900;
+    margin-bottom: 25px;
+}
+
+.section-text {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 2;
+}
+
+/* HİKAYE */
+
+.story {
+    background: #101010;
+    text-align: center;
+}
+
+.story-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.story .heart {
+    color: var(--red);
+    font-size: 35px;
+    margin-bottom: 25px;
+}
+
+/* MOTOR TANITIMI */
+
+.motor {
+    background: #080808;
+}
+
+.motor-intro {
+    max-width: 800px;
+    margin-bottom: 50px;
+}
+
+.motor-intro p {
+    color: #aaa;
+    line-height: 2;
+    font-size: 14px;
+}
+
+.motor-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 70px;
+}
+
+.motor-photo {
+    min-height: 320px;
+    background: #151515;
+    border: 1px solid #252525;
+    overflow: hidden;
+}
+
+.motor-photo img {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    object-fit: cover;
+    display: block;
+    transition: .5s;
+}
+
+.motor-photo:hover img {
+    transform: scale(1.04);
+}
+
+.motor-photo:first-child {
+    grid-column: span 2;
+}
+
+.motor-photo:first-child img {
+    min-height: 480px;
+}
+
+/* TEKNİK ÖZELLİKLER */
+
+.spec-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.spec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.spec-card {
+    background: #151515;
+    padding: 30px 25px;
+    border-bottom: 2px solid #333;
+    transition: .3s;
+}
+
+.spec-card:hover {
+    border-color: var(--red);
+    transform: translateY(-5px);
+}
+
+.spec-card .number {
+    color: var(--red);
+    font-size: 27px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.spec-card h3 {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.spec-card p {
+    color: #888;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+/* DETAYLI AÇIKLAMALAR */
+
+.details {
+    background: #111;
+}
+
+.detail-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    padding: 50px 0;
+    border-bottom: 1px solid #292929;
+}
+
+.detail-row:last-child {
+    border: none;
+}
+
+.detail-row h3 {
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+.detail-row h3 span {
+    color: var(--red);
+}
+
+.detail-row p {
+    color: #aaa;
+    font-size: 13px;
+    line-height: 2;
+}
+
+.detail-tag {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: #241315;
+    color: #ff7b84;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.detail-image {
+    min-height: 270px;
+    background: #191919;
+    border: 1px solid #333;
+    overflow: hidden;
+}
+
+.detail-image img {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+    display: block;
+}
+
+/* TEKNİK TABLO */
+
+.technical {
+    background: #080808;
+}
+
+.table-wrap {
+    max-width: 850px;
+    margin: 40px auto 0;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #121212;
+    text-align: left;
+}
+
+td {
+    padding: 19px;
+    border-bottom: 1px solid #292929;
+    font-size: 12px;
+}
+
+td:first-child {
+    color: #888;
+    width: 45%;
+}
+
+td:last-child {
+    font-weight: 700;
+}
+
+tr:hover {
+    background: #1b1b1b;
+}
+
+/* GÜVENLİK */
+
+.safety {
+    background: #111;
+}
+
+.safety-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.safety-list {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.safety-item {
+    background: #191919;
+    padding: 19px;
+    font-size: 12px;
+    border-left: 3px solid var(--red);
+    color: #ddd;
+}
+
+/* BABAYA MESAJ */
+
+.message {
+    background: linear-gradient(135deg, #190a0c, #080808);
+    text-align: center;
+}
+
+.message-box {
+    max-width: 800px;
+    margin: auto;
+}
+
+.message-box p {
+    color: #bbb;
+    font-size: 14px;
+    line-height: 2.2;
+    margin-bottom: 20px;
+}
+
+.message-box h2 {
+    font-size: clamp(30px, 5vw, 50px);
+    margin-bottom: 35px;
+}
+
+.message-box h2 span {
+    color: var(--red);
+}
+
+/* SON */
+
+.final {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background:
+    linear-gradient(rgba(0,0,0,.88), rgba(0,0,0,.94)),
+    url('images/250sr-son.jpg') center/cover;
+}
+
+.final-content {
+    max-width: 750px;
+}
+
+.final h2 {
+    font-size: clamp(35px, 6vw, 65px);
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.final h2 span {
+    color: var(--red);
+}
+
+.final p {
+    color: #bbb;
+    font-size: 14px;
+    line-height: 2;
+}
+
+footer {
+    background: #040404;
+    text-align: center;
+    padding: 35px 15px;
+    color: #666;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+@keyframes enter {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width: 800px) {
+    nav {
+        padding: 18px 6%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    section {
+        padding: 75px 7%;
+    }
+
+    .hero {
+        min-height: 85vh;
+        padding: 90px 7%;
+        background-position: 60% center;
+    }
+
+    .motor-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .motor-photo:first-child {
+        grid-column: auto;
+    }
+
+    .motor-photo:first-child img {
+        min-height: 280px;
+    }
+
+    .spec-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .detail-row,
+    .safety-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .detail-row:nth-child(even) .detail-image {
+        order: 0;
+    }
+
+    .detail-image {
+        min-height: 230px;
+    }
+
+    .detail-image img {
+        height: 230px;
+    }
+}
+
+@media(max-width: 450px) {
+    .spec-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .opening-content p {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .opening-button {
+        padding: 18px 22px;
+        font-size: 11px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- İLK EKRAN -->
+
+<div id="opening">
+    <div class="opening-content">
+        <div class="opening-line"></div>
+
+        <h1>BABA HAZIR MISIN?</h1>
+
+        <p>SANA ANLATMAK İSTEDİĞİM BİR ŞEY VAR</p>
+
+        <button class="opening-button" onclick="openSite()">
+            EVET, HAZIRIM →
+        </button>
+    </div>
+
+    <div class="opening-footer">
+        SEVGİYLE HAZIRLANDI ❤️
+    </div>
+</div>
+
+<!-- ANA SAYFA -->
+
+<div id="mainSite">
+
+<nav>
+    <div class="logo">BİR <span>HAYALİM</span> VAR.</div>
+
+    <div class="nav-links">
+        <a href="#hikayem">HİKAYEM</a>
+        <a href="#motor">250 SR</a>
+        <a href="#teknik">ÖZELLİKLER</a>
+        <a href="#mesaj">BABAMA</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+
+<header class="hero">
+    <div class="hero-content">
+        <div class="label">BABACIĞIM, BU SUNUM SANA ÖZEL</div>
+
+        <h1>
+            Bir Hayalim Var.<br>
+            <span>Ve Artık Gerçekleşmesini</span><br>
+            İstiyorum.
+        </h1>
+
+        <p>
+            Baba, seninle uzun zamandır konuşmak istediğim
+            bir konu var. Bu sefer sadece anlatmak yerine
+            sana neden bu kadar istediğimi göstermek istedim.
+        </p>
+
+        <a href="#hikayem" class="button">BENİ DİNLE ❤️</a>
+    </div>
+</header>
+
+<!-- HİKAYEM -->
+
+<section class="story" id="hikayem">
+    <div class="story-content">
+        <div class="heart">♥</div>
+
+        <div class="label">ÖNCE BİR KONUŞALIM</div>
+
+        <h2 class="section-title">
+            Baba, Benim Bir Hayalim Var.
+        </h2>
+
+        <p class="section-text">
+            Biliyorum, bu konuyu daha önce birçok kez açtım.
+            Bazen uygun zaman olmadı, bazen başka bir zamana
+            bıraktık.
+
+            Ama benim bu isteğim hâlâ aynı.
+            Hatta zaman geçtikçe daha da çok istiyorum.
+
+            Bu siteyi hazırlamak istedim çünkü sana
+            bu konunun benim için ne kadar önemli olduğunu
+            göstermek istiyorum.
+
+            Senden para istemiyorum baba.
+            Tek istediğim bu hayalimi daha fazla ertelemeden,
+            en kısa sürede gerçekleştirebilmek için
+            birlikte bir yol bulmamız.
+
+            Seni anlıyorum ve düşüncelerine saygı duyuyorum.
+            Ama benim de bu hayalimi bir kez olsun
+            ciddiyetle değerlendirmeni istiyorum.
+        </p>
+    </div>
+</section>
+
+<!-- MOTOR -->
+
+<section class="motor" id="motor">
+
+    <div class="motor-intro">
+        <div class="label">HAYALİMDEKİ MAKİNE</div>
+
+        <h2 class="section-title">CFMOTO 250 SR</h2>
+
+        <p>
+            İşte istediğim motosiklet: CFMOTO 250 SR.
+
+            Sport Racing sınıfında yer alan bu motosiklet;
+            sportif tasarımı, 249 cc motoru, ABS fren sistemi
+            ve modern sürüş özellikleriyle dikkat çekiyor.
+
+            Sadece dış görünüşüyle değil, teknik özellikleriyle
+            de araştırdığım ve gerçekten istediğim bir model.
+        </p>
+    </div>
+
+    <!-- FOTOĞRAFLARINI BURAYA EKLE -->
+
+    <div class="motor-gallery">
+
+        <div class="motor-photo">
+            <img src="1.png" alt="CFMOTO 250 SR ana görünüm">
+        </div>
+
+        <div class="motor-photo">
+            <img src="2.png" alt="CFMOTO 250 SR yan görünüm">
+        </div>
+
+        <div class="motor-photo">
+            <img src="3.webp" alt="CFMOTO 250 SR detay">
+        </div>
+
+    </div>
+
+    <div class="spec-heading">
+        <div class="label">250 SR'Yİ YAKINDAN TANIYALIM</div>
+        <h2 class="section-title">Teknik Özellikleri</h2>
+    </div>
+
+    <div class="spec-grid">
+
+        <div class="spec-card">
+            <div class="number">249 cc</div>
+            <h3>Motor Hacmi</h3>
+            <p>Tek silindirli, sıvı soğutmalı DOHC motor.</p>
+        </div>
+
+        <div class="spec-card">
+            <div class="number">19,5 kW</div>
+            <h3>Maksimum Güç</h3>
+            <p>9750 devir/dakikada maksimum güç.</p>
+        </div>
+
+        <div class="spec-card">
+            <div class="number">22 Nm</div>
+            <h3>Maksimum Tork</h3>
+            <p>7500 devir/dakikada maksimum tork.</p>
+        </div>
+
+        <div class="spec-card">
+            <div class="number">165 kg</div>
+            <h3>Boş Ağırlık</h3>
+            <p>Hafif tasarımlı motosiklet gövdesi.</p>
+        </div>
+
+        <div class="spec-card">
+            <div class="number">12 L</div>
+            <h3>Yakıt Deposu</h3>
+            <p>12 litrelik yakıt kapasitesi.</p>
+        </div>
+
+        <div class="spec-card">
+            <div class="number">ABS</div>
+            <h3>Fren Sistemi</h3>
+            <p>Standart ABS güvenlik sistemi.</p>
+        </div>
+
+        <div class="spec-card">
+            <div class="number">765 mm</div>
+            <h3>Sele Yüksekliği</h3>
+            <p>Üretici sayfasında belirtilen sele yüksekliği.</p>
+        </div>
+
+        <div class="spec-card">
+            <div class="number">6 Vites</div>
+            <h3>Şanzıman</h3>
+            <p>Teknik özellik sayfasında vites sayısı ayrıca belirtilmemiştir; bayi ile doğrulanmalı.</p>
+        </div>
+
+        <div class="spec-card">
+            <div class="number">37 mm</div>
+            <h3>Ön Süspansiyon</h3>
+            <p>Ters teleskopik ön amortisör.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DETAYLI ÖZELLİKLER -->
+
+<section class="details">
+
+    <div class="label">MOTORU SADECE GÖRÜNTÜSÜYLE DEĞİL</div>
+
+    <h2 class="section-title">Detaylarıyla Tanıyalım.</h2>
+
+    <div class="detail-row">
+
+        <div>
+            <h3><span>01.</span> Motor ve Performans</h3>
+
+            <p>
+                CFMOTO 250 SR, 249 cc hacminde,
+                tek silindirli ve sıvı soğutmalı DOHC
+                motorla donatılmıştır.
+
+                9750 devirde 19,5 kW maksimum güç,
+                7500 devirde ise 22 Nm maksimum tork sunar.
+
+                Sport ve Eco sürüş modları sayesinde
+                farklı sürüş karakterleri arasında
+                geçiş yapabilme imkânı sunar.
+            </p>
+
+            <div class="detail-tag">249 CC • DOHC • SIVI SOĞUTMA</div>
+        </div>
+
+        <div class="detail-image">
+            <img src="5.jpg" alt="Motor detayı">
+        </div>
+
+    </div>
+
+    <div class="detail-row">
+
+        <div class="detail-image">
+            <img src="6.png" alt="Fren sistemi">
+        </div>
+
+        <div>
+            <h3><span>02.</span> Fren ve ABS Sistemi</h3>
+
+            <p>
+                Ön tarafta 292 mm disk ve karşılıklı
+                4 pistonlu kaliper, arka tarafta ise
+                220 mm disk ve tek pistonlu kaliper bulunur.
+
+                Standart ABS sistemi, ani frenleme sırasında
+                tekerleklerin kilitlenme ihtimalini azaltmaya
+                yardımcı olur.
+
+                Güvenlik açısından önemli özelliklerinden
+                biri de bu fren sistemidir.
+            </p>
+
+            <div class="detail-tag">ÖN 292 MM • ABS • ARKA 220 MM</div>
+        </div>
+
+    </div>
+
+    <div class="detail-row">
+
+        <div>
+            <h3><span>03.</span> Süspansiyon ve Yol Tutuşu</h3>
+
+            <p>
+                Ön bölümde 37 mm ters teleskopik amortisör,
+                arka bölümde ise merkezi mono amortisör
+                kullanılmıştır.
+
+                Bu yapı, yol yüzeyinden gelen darbeleri
+                karşılamaya ve motosikletin sürüş dengesini
+                desteklemeye yardımcı olur.
+
+                Kaydırmalı debriyaj sistemi de vites
+                küçültürken daha kontrollü geçişler
+                sağlamayı amaçlar.
+            </p>
+
+            <div class="detail-tag">TERS AMORTİSÖR • MONO AMORTİSÖR</div>
+        </div>
+
+        <div class="detail-image">
+            <img src="4.png" alt="Süspansiyon detayı">
+        </div>
+
+    </div>
+
+    <div class="detail-row">
+
+        <div class="detail-image">
+            <img src="7.png" alt="Motosiklet tasarımı">
+        </div>
+
+        <div>
+            <h3><span>04.</span> Tasarım ve Renkler</h3>
+
+            <p>
+                250 SR, sportif kaporta yapısı ve
+                yarış motosikletlerinden esinlenen
+                tasarım çizgileriyle dikkat çekiyor.
+
+                Üretici sayfasında üç farklı renk
+                seçeneği bulunuyor:
+
+                Hayalet Gri, Lav Turuncusu ve Nebula Siyah.
+
+                Benim için bu motosikletin en dikkat
+                çekici özelliklerinden biri de tasarımı.
+            </p>
+
+            <div class="detail-tag">HAYALET GRİ • LAV TURUNCUSU • NEBULA SİYAH</div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- TEKNİK TABLO -->
+
+<section class="technical" id="teknik">
+
+    <div class="spec-heading">
+        <div class="label">RESMİ TEKNİK VERİLER</div>
+        <h2 class="section-title">Teknik Bilgi Tablosu</h2>
+    </div>
+
+    <div class="table-wrap">
+
+        <table>
+
+            <tr><td>Motor tipi</td><td>Tek silindirli, sıvı soğutmalı DOHC</td></tr>
+            <tr><td>Motor hacmi</td><td>249 cc</td></tr>
+            <tr><td>Silindir çapı x strok</td><td>72 x 61,2 mm</td></tr>
+            <tr><td>Maksimum güç</td><td>19,5 kW / 9750 rpm</td></tr>
+            <tr><td>Maksimum tork</td><td>22 Nm / 7500 rpm</td></tr>
+            <tr><td>Uzunluk</td><td>2010 mm</td></tr>
+            <tr><td>Genişlik</td><td>750 mm</td></tr>
+            <tr><td>Yükseklik</td><td>1080 mm</td></tr>
+            <tr><td>Dingil mesafesi</td><td>1360 mm</td></tr>
+            <tr><td>Yerden yükseklik</td><td>120 mm</td></tr>
+            <tr><td>Boş ağırlık</td><td>165 kg</td></tr>
+            <tr><td>Yakıt kapasitesi</td><td>12 litre</td></tr>
+            <tr><td>Sele yüksekliği</td><td>765 mm</td></tr>
+            <tr><td>Ön fren</td><td>292 mm disk / 4 pistonlu</td></tr>
+            <tr><td>Arka fren</td><td>220 mm disk / tek pistonlu</td></tr>
+            <tr><td>ABS</td><td>Standart</td></tr>
+            <tr><td>Ön lastik</td><td>110/70 R17</td></tr>
+            <tr><td>Arka lastik</td><td>140/60 R17</td></tr>
+            <tr><td>Ön süspansiyon</td><td>37 mm ters amortisör</td></tr>
+            <tr><td>Arka süspansiyon</td><td>Merkezi mono amortisör</td></tr>
+
+        </table>
+
+    </div>
+
+    <p style="text-align:center;color:#666;font-size:10px;margin-top:25px;line-height:1.8;">
+        Teknik bilgiler CFMOTO Türkiye'nin 250SR ürün sayfasından alınmıştır.
+        Model yılına ve bölgeye göre farklılık gösterebilir.
+    </p>
+
+</section>
+
+<!-- GÜVENLİK -->
+
+<section class="safety">
+
+    <div class="safety-grid">
+
+        <div>
+            <div class="label">SENİN İÇİN EN ÖNEMLİ KONU</div>
+
+            <h2 class="section-title">
+                Güvenliğim Her Şeyden Önemli.
+            </h2>
+
+            <p class="section-text">
+                Baba, motosikletin sadece güzel görünmesine
+                bakmıyorum. Güvenliğin ne kadar önemli
+                olduğunu da biliyorum.
+
+                Kask, mont, eldiven, ehliyet, eğitim ve
+                trafik kuralları benim için olmazsa olmaz.
+
+                Senden isteğim, bu konuda endişelerini
+                birlikte konuşmamız ve gerekli bütün
+                önlemleri almamız.
+            </p>
+        </div>
+
+        <div class="safety-list">
+
+            <div class="safety-item">✓ Sertifikalı tam yüz kaskı</div>
+            <div class="safety-item">✓ Koruyucu motosiklet montu</div>
+            <div class="safety-item">✓ Motosiklet eldiveni ve korumalı pantolon</div>
+            <div class="safety-item">✓ Uygun ehliyet ve yasal şartlar</div>
+            <div class="safety-item">✓ Profesyonel güvenli sürüş eğitimi</div>
+            <div class="safety-item">✓ Hız sınırlarına ve trafik kurallarına uyum</div>
+            <div class="safety-item">✓ Düzenli bakım ve kontroller</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BABAMA MESAJ -->
+
+<section class="message" id="mesaj">
+
+    <div class="message-box">
+
+        <div class="label">ŞİMDİ DE BENİM SÖYLEMEK İSTEDİKLERİM</div>
+
+        <h2>
+            Baba, <span>Sana Bir Şey Söylemek İstiyorum.</span>
+        </h2>
+
+        <p>
+            Öncelikle bana bugüne kadar yaptığın
+            her şey için teşekkür ederim.
+
+            Ben bu siteyi sana para istemek için hazırlamadım.
+            Senden maddi bir talebim yok.
+
+            Benim istediğim şey, uzun zamandır kurduğum
+            bu hayalin artık sürekli ertelenmemesi.
+
+            Her seferinde başka bir zamana bırakmak
+            yerine birlikte oturup konuşalım.
+            Nasıl yapabiliriz, ne zaman yapabiliriz,
+            hangi şartları sağlamamız gerekiyor;
+            bunları birlikte belirleyelim.
+
+            Benim için önemli olan bu hayalime
+            en kısa sürede kavuşabilmek.
+
+            Senin düşüncelerin benim için değerli.
+            Sadece benim düşüncelerimi de anlamanı istiyorum.
+        </p>
+
+        <p style="color:white;font-weight:700;">
+            Senden tek istediğim, bu sefer birlikte
+            somut bir karar vermemiz.
+        </p>
+
+        <p style="font-family:'Playfair Display',serif;font-size:25px;color:#e63946;">
+            Seni seviyorum babam. ❤️
+        </p>
+
+    </div>
+
+</section>
+
+<!-- SON EKRAN -->
+
+<section class="final">
+
+    <div class="final-content">
+
+        <div class="label">SON BİR KEZ DAHA DÜŞÜN BABA</div>
+
+        <h2>
+            Bir Hayalimi<br>
+            <span>Daha Fazla Erteleme.</span>
+        </h2>
+
+        <p>
+            Belki senin için bir motosiklet.
+            Ama benim için uzun zamandır beklediğim
+            çok özel bir hayal.
+
+            <br><br>
+
+            Gel, bu sefer sadece konuşmayalım.
+            Birlikte bir karar verelim.
+
+            <br><br>
+
+            <strong style="color:white;font-size:18px;">
+                Ne dersin babacığım?
+            </strong>
+        </p>
+
+        <a href="https://www.cfmoto.com.tr/urunler/250-sr"
+           target="_blank"
+           class="button">
+            250 SR'Yİ RESMİ SİTEDE İNCELE →
+        </a>
+
+    </div>
+
+</section>
+
+<footer>
+    BABAMA SEVGİYLE HAZIRLANDI ❤️
+    <br><br>
+    BİR HAYALİM VAR.
+</footer>
+
+</div>
+
+<script>
+
+function openSite() {
+
+    const opening = document.getElementById("opening");
+    const mainSite = document.getElementById("mainSite");
+
+    opening.classList.add("hide");
+
+    mainSite.classList.add("show");
+
+    document.body.style.overflow = "auto";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+// İlk açılışta sayfa kaydırmasını engelle
+document.body.style.overflow = "hidden";
+
+</script>
+
+</body>
+</html>
